@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Novo Usuário{% endblock %}
+{% block content %}
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+<br><br>
+<div class="container-fluid">
+
+    <div class="card">
+        <div class="card-body">
+            <br>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Novo Usuário</h1>
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <div>
+                    <div class="buttons-container">
+                        <input type="submit" value="Salvar Alterações" class="btn btn-primary">
+                        <a href="/usuarios/" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
