@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 from django.db import models
 from master.models import Servicos
 
@@ -34,7 +35,7 @@ class Agendamento(models.Model):
     ]
     
     id = models.BigAutoField(primary_key=True)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     servico = models.ForeignKey(Servicos, on_delete=models.CASCADE)
     data = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente', null=True, blank=True)

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Excluir agendamento
+{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+<h2>Excluir Agendamento</h2>
+<p>Tem certeza de que deseja excluir?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+</form>
+<a href="/agendamentos/">Cancelar</a>
+{% endblock %}

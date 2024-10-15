@@ -1,10 +1,12 @@
 
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 from master_project import views
 from rest_framework.routers import DefaultRouter
 from master.views import ServiceViewSet, AppointmentViewSet, AgendamentoViewSet, UserViewSet
-from user.views import AgendamentoCreate, AgendamentosListView, UsuariosListView, Novousuario
+from user import views as user_views
+
 
 
 router = DefaultRouter()
@@ -18,13 +20,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('api/', include(router.urls)),
+    path('agendamentos/', include('user.urls', namespace='agendamentos')),
+
     
-    
-    path('usuarios/', UsuariosListView.as_view(), name='usuarios-list'),
-    path('usuarios/novo/', Novousuario.as_view(), name='usuario-create'),
-    
-    # URLs para Agendamentos
-    path('agendamentos/', AgendamentosListView.as_view(), name='agendamentos-list'),
-    path('agendamentos/novo/', AgendamentoCreate.as_view(), name='agendamento-create'),
-    
+    # URLs de Login e Logout
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    # Cadastro de usuário
+    path('register/', user_views.register, name='register'),
 ]

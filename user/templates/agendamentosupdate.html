@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Editar Agendamentos{% endblock %}
+{% block content %}
+<br><br><br>
+<style>
+    h3 {
+        text-align: center;
+    }
+</style>
+<div class="container">
+
+    <div class="card">
+        <div class="card-body">
+            <br>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3>Editar Agendamento</h3>
+                <br><br>
+                <div class="container">
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                {{ form.data.label_tag }}
+                                {{ form.data }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7"></div>
+                    <br><br>
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                {{ form.usuario.label_tag }}
+                                {{ form.usuario }}
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                {{ form.servico.label_tag }}
+                                {{ form.servico }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="mb-3">
+                    {{ form.status.label_tag }}
+                    {{ form.status }}
+                </div>
+                <div class="mb-3">
+                    {{ form.remetente.label_tag }}
+                    {{ form.remetente }}
+                </div>
+                <div class="mb-3">
+                    {{ form.destinatario.label_tag }}
+                    {{ form.destinatario }}
+                </div>
+                <div class="mb-3">
+                    {{ form.conteudo.label_tag }}
+                    {{ form.conteudo }}
+                </div>
+                <div class="buttons-container">
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                    <a href="/agendamentos/" class="btn btn-secondary">Cancelar</a>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
