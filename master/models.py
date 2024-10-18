@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import User
 
 class Base(models.Model):
     criado = models.DateField('Data de Criação', auto_now_add=True) 
@@ -30,12 +31,14 @@ class Especialidade(Base):
     def __str__(self):
         return self.nome
 
+
 class Servicos(Base):
     titulo = models.CharField('Título do Serviço', max_length=50)
     categoria = models.ForeignKey(Categoria, related_name='servicos', on_delete=models.CASCADE)
     grupo = models.ForeignKey(Grupo, related_name='servicos', on_delete=models.CASCADE)
     especialidade = models.ForeignKey(Especialidade, related_name='servicos', on_delete=models.CASCADE)
     observacoes_uteis = models.TextField('Observações Úteis', max_length=100, blank=True, null=True)
+    prestador = models.ForeignKey(User, related_name='servicos', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulo

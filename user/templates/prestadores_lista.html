@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br><br>
+<div class="container">
+    <div class="card p-4 shadow-sm">
+        <h2 class="mb-4 text-center"><strong>{{ categoria.nome }}</strong></h2>
+
+        <div class="list-group">
+            {% for prestador in prestadores %}
+            <div class="list-group-item list-group-item-action mb-3 rounded border">
+                <h5 class="mb-2">{{ prestador.username }}</h5>
+                <p class="mb-1">{{ prestador.email }}</p>
+                <p class="mb-1">{{ prestador.telefone }}</p>
+
+
+                <small class="text-muted d-block mb-2">
+                    {% if prestador.avaliacao %}
+                    Avaliação Média: {{ prestador.avaliacao }}
+                    {% else %}
+                    Nenhuma Avaliação
+                    {% endif %}
+                </small>
+
+                <a href="{% url 'agendamentos:agendamento-create' prestador.id %}" class="btn btn-primary mt-2">
+                    Agendar com {{ prestador.username }}
+                </a>
+            </div>
+            {% empty %}
+            <p class="text-center text-muted">Nenhum prestador encontrado nesta categoria.</p>
+
+            {% endfor %}
+
+        </div>
+    </div>
+    <a href="{% url 'home'%}" class="btn btn-success mt-3">Voltar Para a Home</a>
+</div>
+{% endblock %}

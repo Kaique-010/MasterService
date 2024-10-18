@@ -46,7 +46,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="tipo_usuario" class="form-label">Tipo de Usuário</label>
-                            {{ form.tipo_usuario }}
+                            <select name="tipo_usuario" id="tipo_usuario" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="prestador">Prestador</option>
+                                <option value="cliente">Cliente</option>
+                            </select>
                             {{ form.tipo_usuario.errors }}
                         </div>
                         <div class="mb-3">
@@ -54,6 +58,32 @@
                             {{ form.foto }}
                             {{ form.foto.errors }}
                         </div>
+
+                        <!-- Campos para prestadores -->
+                        <div id="prestador-fields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="titulo_servico" class="form-label">Título do Serviço</label>
+                                <input type="text" name="titulo_servico" class="form-control"
+                                    placeholder="Título do Serviço" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria_servico" class="form-label">Categoria</label>
+                                {{ form.categoria_servico }}
+                                {{ form.categoria_servico.errors }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="grupo_servico" class="form-label">Grupo</label>
+                                {{ form.grupo_servico }}
+                                {{ form.grupo_servico.errors }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="especialidade_servico" class="form-label">Especialidade</label>
+                                {{ form.especialidade_servico }}
+                                {{ form.especialidade_servico.errors }}
+                            </div>
+                        </div>
+
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Registrar</button>
                         </div>
@@ -63,5 +93,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tipoUsuarioSelect = document.getElementById('tipo_usuario');
+        const prestadorFields = document.getElementById('prestador-fields');
+
+        console.log(tipoUsuarioSelect); // Verifique se o elemento está presente
+
+        if (tipoUsuarioSelect) { // Verifica se o elemento foi encontrado
+            tipoUsuarioSelect.addEventListener('change', function () {
+                if (this.value === 'prestador') {
+                    prestadorFields.style.display = 'block';
+                } else {
+                    prestadorFields.style.display = 'none';
+                }
+            });
+        } else {
+            console.error('Elemento tipo_usuario não encontrado.');
+        }
+    });
+</script>
 
 {% endblock %}

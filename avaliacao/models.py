@@ -14,7 +14,7 @@ class Avaliacao(models.Model):
 
     class Meta:
         ordering = ['-criado']
-        unique_together = ('usuario', 'servico')  
+        
 
     def __str__(self):
         return f'Avaliação de {self.usuario} para {self.servico} - Nota: {self.nota}'

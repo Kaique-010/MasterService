@@ -1,4 +1,4 @@
-from user.views import AgendamentoCreate, AgendamentosListView, UsuariosListView, Novousuario, AgendamentoDelete, AgendamentoDetail, AgendamentosUpdateView
+from user.views import AgendamentoCreate,AgendamentosListView, UsuariosListView, Novousuario, AgendamentoDelete, AgendamentoDetail, AgendamentosUpdateView, AgendamentoCreateView
 from django.urls import path
  
 app_name = 'agendamentos' 
@@ -10,8 +10,10 @@ urlpatterns = [
     path('delete/<int:pk>/', AgendamentoDelete.as_view(), name='deleteagendamento'),
     path('<int:pk>/', AgendamentoDetail.as_view(), name='agendamentodetail'),
     path('<int:pk>/editar/', AgendamentosUpdateView.as_view(), name='agendamentosupdate'),
+    path('novo/<int:prestador_id>/', AgendamentoCreateView.as_view(), name='agendamento-create'),
     
     
     path('usuarios', UsuariosListView.as_view(), name='usuarios-list'),
     path('usuarios/novo/', Novousuario.as_view(), name='usuario-create'),
+
     ]

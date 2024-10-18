@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block content %}
+<h1>Tem certeza que deseja excluir esta avaliação?</h1>
+<p>Serviço: {{ object.servico }}</p>
+<p>Nota: {{ object.nota }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+</form>
+<a href="{% url 'avaliacoeslist' %}">Cancelar</a>
+
+{% endblock %}
