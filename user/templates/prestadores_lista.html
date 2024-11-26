@@ -13,13 +13,19 @@
                 <p class="mb-1">{{ prestador.email }}</p>
                 <p class="mb-1">{{ prestador.telefone }}</p>
 
-
                 <small class="text-muted d-block mb-2">
-                    {% if prestador.avaliacao %}
-                    Avaliação Média: {{ prestador.avaliacao }}
-                    {% else %}
-                    Nenhuma Avaliação
-                    {% endif %}
+                    {% with prestador.servicos.all as servicos %}
+                        {% if servicos %}
+                            {% for servico in servicos %}
+                                <p class="mb-1">
+                                    Serviço: {{ servico.nome }} - Média: {{ servico.media_avaliacoes|floatformat:1 }}
+                                    <i class="bi bi-star"></i>
+                                </p>
+                            {% endfor %}
+                        {% else %}
+                            <p>Nenhum serviço avaliado.</p>
+                        {% endif %}
+                    {% endwith %}
                 </small>
 
                 <a href="{% url 'agendamentos:agendamento-create' prestador.id %}" class="btn btn-primary mt-2">
@@ -28,9 +34,7 @@
             </div>
             {% empty %}
             <p class="text-center text-muted">Nenhum prestador encontrado nesta categoria.</p>
-
             {% endfor %}
-
         </div>
     </div>
     <a href="{% url 'home'%}" class="btn btn-success mt-3">Voltar Para a Home</a>

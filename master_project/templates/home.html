@@ -8,7 +8,7 @@
 <br><br><br><br>
 <style>
     .custom-card-header {
-        background-color: #476447;
+        background-color: #18385b;
         /* Cor verde */
         color: white;
         /* Texto branco */
@@ -118,14 +118,18 @@
             <h5>Melhores Avaliados:</h5>
         </div>
         <div class="card-body custom-card-body">
-            {% for avaliacao in avaliacoes %}
+            {% for servico in servicos %}
             <div class="mb-3 border rounded p-3 shadow-sm">
-                <h6 class="mb-1">{{ avaliacao.servico }}</h6>
-                <p class="mb-1">{{ avaliacao.nota }} <i class="bi bi-star"></i></p>
-                <small class="text-muted">Avaliado em: {{ avaliacao.criado }}</small>
+                <h4>{{ servico.prestador }}</h4>
+                <h6 class="mb-1">{{ servico.nome }}</h6>
+                <p class="mb-1">
+                    Média: {{ servico.media_avaliacoes|floatformat:1 }}
+                    <i class="bi bi-star"></i>
+                </p>
+                <small class="text-muted">Especialidade: {{ servico.especialidade }}</small>
             </div>
             {% empty %}
-            <p>Nenhuma avaliação disponível.</p>
+            <p>Nenhum serviço avaliado.</p>
             {% endfor %}
         </div>
     </div>

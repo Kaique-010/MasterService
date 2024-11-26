@@ -39,6 +39,7 @@ class Servicos(Base):
     especialidade = models.ForeignKey(Especialidade, related_name='servicos', on_delete=models.CASCADE)
     observacoes_uteis = models.TextField('Observações Úteis', max_length=100, blank=True, null=True)
     prestador = models.ForeignKey(User, related_name='servicos', on_delete=models.CASCADE)
+    media_avaliacoes = models.FloatField(default=0.0, verbose_name='Média das Avaliações')
 
     def __str__(self):
         return self.titulo

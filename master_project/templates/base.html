@@ -22,7 +22,7 @@
 
     <style>
         body {
-            background-color: #F8E6D3;
+            background-color: #ffffff
         }
 
         .navbar-nav .nav-link {
@@ -76,8 +76,10 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}" style="font-family:'Times New Roman', Times, serif">MASTER
-                SERVICES</a>
+            <a class="navbar-brand" href="{% url 'home' %}" style="font-family:'Times New Roman', Times, serif">
+                <img src="{% static 'logo.png' %}" alt="Logo" style="height: 20px; margin-right: 7px;">
+                MASTER SERVICES
+            </a>
             <div class="d-flex flex-grow-1 justify-content-center align-items-center">
                 {% if user.is_authenticated %}
                 <li class="text-white me-2">Olá, {{ user.username }}</li>

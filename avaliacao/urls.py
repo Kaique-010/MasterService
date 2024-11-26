@@ -12,5 +12,3 @@ urlpatterns = [
     path('avaliacoes/editar/<int:pk>/', AvaliacaoUpdateView.as_view(), name='avaliacao-edit'),
     path('avaliacoes/excluir/<int:pk>/', AvaliacaoDeleteView.as_view(), name='avaliacao-delete'),
 ]
-
-
